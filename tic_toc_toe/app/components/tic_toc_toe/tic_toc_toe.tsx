@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 export default function TicTocToe() {
-    const [size, setSize] = useState(3); // Set the default board size (n x n)
+    const [size, setSize] = useState(3); 
     const initialData = Array(size * size).fill('');
     const [count, setCount] = useState(0);
     const [click, setClick] = useState('');
@@ -35,7 +35,7 @@ export default function TicTocToe() {
     };
 
     const handleWinCheck = (currentData: string[]) => {
-        // Check rows and columns
+        
         for (let i = 0; i < size; i++) {
             if (
                 currentData.slice(i * size, (i + 1) * size).every((cell) => cell === 'x') ||
@@ -45,26 +45,26 @@ export default function TicTocToe() {
                 return;
             }
             if (
-                currentData.filter((_, index) => index % size === i).every((cell) => cell === 'x') ||
-                currentData.filter((_, index) => index % size === i).every((cell) => cell === 'o')
+                currentData.filter((item, index) => index % size === i).every((cell) => cell === 'x') ||
+                currentData.filter((item, index) => index % size === i).every((cell) => cell === 'o')
             ) {
                 won(currentData[i]);
                 return;
             }
         }
 
-        // Check diagonals
+       
         if (
-            currentData.filter((_, index) => index % (size + 1) === 0).every((cell) => cell === 'x') ||
-            currentData.filter((_, index) => index % (size + 1) === 0).every((cell) => cell === 'o')
+            currentData.filter((item, index) => index % (size + 1) === 0).every((cell) => cell === 'x') ||
+            currentData.filter((item, index) => index % (size + 1) === 0).every((cell) => cell === 'o')
         ) {
             won(currentData[0]);
             return;
         }
         if (
-            currentData.filter((_, index) => index > 0 && index < size * size - 1 && index % (size - 1) === 0)
+            currentData.filter((item, index) => index > 0 && index < size * size - 1 && index % (size - 1) === 0)
                 .every((cell) => cell === 'x') ||
-            currentData.filter((_, index) => index > 0 && index < size * size - 1 && index % (size - 1) === 0)
+            currentData.filter((item, index) => index > 0 && index < size * size - 1 && index % (size - 1) === 0)
                 .every((cell) => cell === 'o')
         ) {
             won(currentData[size - 1]);
